@@ -42,6 +42,10 @@ class Circle
     radius = r;
   }
   
+  public int getMaxRadius()
+  {
+    return maxRadius;
+  }
     public int getX()
   {
     return x;
@@ -65,7 +69,7 @@ class Circle
   
   public boolean maxRadius(int r)
   {
-    return (r > 200);
+    return (r >= maxRadius);
   }
   
   public boolean minRadius(int r)
@@ -88,8 +92,5 @@ class Circle
     radius -= 1;
   }
   
-  void circleCollision(Circle c1, Circle c2)
-  {
-      
-  }
+  
 }
