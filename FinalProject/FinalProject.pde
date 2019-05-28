@@ -1,7 +1,7 @@
 class Circle
 {
-  
-  int radius, x, y, maxRadius = 200;
+ int radius, x, y, maxRadius = 200;
+ boolean notGrowing;
 
  public void wallDetection()
    {
@@ -19,18 +19,50 @@ class Circle
       }
       
     }
+   }
  
- }
- 
+ Circle(int r)
+  {
+    radius = r;
+    x = 0;
+    y = 0;
+    this.notGrowing = false;
+  }
   
-  Circle(int r, int xPos, int yPos)
+  Circle(int xPos, int yPos, int r)
   {
     radius = r;
     x = xPos;
     y = yPos;
+    this.notGrowing = false;
+  }  
+   
+  public boolean maxRadius(int r)
+  {
+    return (r >= maxRadius);
   }
- 
   
+  public boolean minRadius(int r)
+  {
+    return (r <= 0);    
+  }
+  
+  void show()
+  {
+    ellipse(x,y,radius, radius);
+  }
+  
+  void grow()
+  {
+    radius += 1;
+  }
+  
+  void shrink()
+  {
+    radius -= 1;
+  }
+  
+  //getters and setters
   
   public int getRadius()
   {
@@ -66,31 +98,14 @@ class Circle
     y = n;
   }
   
-  
-  public boolean maxRadius(int r)
+  public void setNotGrowing(boolean b)
   {
-    return (r >= maxRadius);
+    this.notGrowing = b;
   }
-  
-  public boolean minRadius(int r)
+ 
+  public boolean getNotGrowing()
   {
-    return (r <= 0);    
+    return this.notGrowing;
   }
-  
-  void show()
-  {
-    ellipse(x,y,radius, radius);
-  }
-  
-  void grow()
-  {
-    radius += 1;
-  }
-  
-  void shrink()
-  {
-    radius -= 1;
-  }
-  
   
 }
