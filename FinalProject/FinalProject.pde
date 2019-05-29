@@ -5,14 +5,14 @@ class Circle
 
  public void wallDetection()
    {
-     while(x < maxRadius || y + maxRadius > height || x + maxRadius > width || y < maxRadius)
+     while(x < maxRadius/2 || y + maxRadius/2 > height || x + maxRadius/2 > width || y < maxRadius/2)
     {
-      if(x + maxRadius > width || x < maxRadius)
+      if(x + maxRadius/2 > width || x < maxRadius/2)
       {
         x = (int)(Math.random() * width);
       }
         
-      if(y + maxRadius > height || y < maxRadius)
+      if(y + maxRadius/2 > height || y < maxRadius/2)
       {
         y = (int) (Math.random() * height);
         

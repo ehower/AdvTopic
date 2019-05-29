@@ -55,7 +55,7 @@ void draw()
   //loop aroo
   if(state == 1 && counter <= 2000)
   {
-    if(counter % 35 == 0)
+    if(counter % 10 == 0)
     {
       currentBubbles.add(new Circle(0));
       currentBubbles.get(currentBubbles.size()-1).wallDetection();
