@@ -43,19 +43,16 @@ void draw()
   if(state == 2)
   {
      fill(0, 102, 153, 51);
-     //Shows the amount of circles hit in comparison to the total amount of on-screen circles
      text("Circles Hit: " + circleClicks + "/" + (totalCircles - 1) + " (HITS/TARGETS)", 0, 0, width, height/3);
-     //Shows the amount of circles the user clicked in comparison to how many on-screen circles there were
      text("Accuracy: " + circleClicks + "/" + (totalClicks - 1) + " (HITS/CLICKS)", 0, height/3, width, height/3);
-     //Calculates user efficiency by taking the average of the above two calculations
      text("Efficiency: " + (int)((((circleClicks/totalCircles) + (circleClicks/totalClicks))/2.0) * 100) + "% (Average of Above Statistics)", 0, height - (height/3), width, height/3);
      
   }
   
   //loop aroo
-  if(state == 1 && counter <= 2000)
+  if(state == 1 && counter <= 2400)
   {
-    if(counter % 35 == 0)
+    if(counter % 40 == 0)
     {
       currentBubbles.add(new Circle(0));
       currentBubbles.get(currentBubbles.size()-1).wallDetection();
@@ -82,7 +79,7 @@ void draw()
       }
     }
     
-    if(counter == 2000)
+    if(counter == 600)
       state = 2;
   }
   
@@ -105,12 +102,7 @@ void draw()
   fill(0, 102, 153, 51);
   //String, X,Y 
   //text(s, 10, 10, 70, 80);
-  text("Mouse Accuracy Test", 0, 0, width, height);
-  
-  fill(65, 105, 225);
-  text("Start", tempX-buttonOffX, tempY-buttonOffY+ height/3, buttonW, buttonH);
-  
-  fill(0, 102, 153, 51);
+  text("This is what it looks like with much more! I have never seen a man who was able to best me in a battle!", 0, 0, width, height);
   //color to fill it with
   //can use Hex or the Visual value components
 //ebic circle working
@@ -136,10 +128,8 @@ void mousePressed()
     int index = 0;
     for(Circle c: currentBubbles)
     {
-      //Checks if the user's mouse is within the boundaries of the circle
       if(dist(mouseX, mouseY, c.getX(), c.getY()) < closeDist && dist(mouseX, mouseY, c.getX(), c.getY()) < c.getRadius()/2)
       {
-        //finds the circle index with the closest distance to the user mouse (in case the user clicks two overlapping circles)
         closeDist = dist(mouseX, mouseY, c.getX(), c.getY());
         index = currentBubbles.indexOf(c);
       }
