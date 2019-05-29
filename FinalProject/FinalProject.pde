@@ -3,8 +3,10 @@ class Circle
  int radius, x, y, maxRadius = 200;
  boolean notGrowing;
 
+//checks the x and y values of the circle, if the circle is touching a screen border it is relocated
  public void wallDetection()
    {
+   //runs the while loop if any coordinates are within the screen boundaries
      while(x < maxRadius/2 || y + maxRadius/2 > height || x + maxRadius/2 > width || y < maxRadius/2)
     {
       if(x + maxRadius/2 > width || x < maxRadius/2)
@@ -20,7 +22,7 @@ class Circle
       
     }
    }
- 
+
  Circle(int r)
   {
     radius = r;
