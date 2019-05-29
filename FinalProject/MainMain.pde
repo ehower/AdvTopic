@@ -1,3 +1,15 @@
+/*
+Ethan Hower & Troy Cope
+P-2
+5/28/19
+This is our own work, ERH, TC
+Our project is a mouse reaction time tester. The project will show the users a series of circles, and the user will have to click on 
+the circles with their mouse. The circles will appear faster over time. If the user hits the circles, they will get points. If the user 
+misses or if the circles disappear, the users will lose points and accuracy. After one minute, the results of the user’s test will be 
+displayed for them. The point of the accuracy tester is to allow the user to improve their overall speed and accuracy while using a 
+mouse. Mouse accuracy is extremely important in a variety of games, so we are truly helping the gamers of the world. Our project will 
+help the user to improve their gaming, in RTS, MOBA, and FPS games.
+*/
 color col = color(216);
 int state;
 double circleClicks, totalClicks, totalCircles;
