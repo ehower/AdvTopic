@@ -25,11 +25,13 @@ void setup() {  // setup() runs once
   for(int i = 0; i < 1; i++)
   {
     //int r, int xPos, int yPos
+    //creates a new circle, then counts the circle towards the total
     currentBubbles.add(new Circle(0));
     totalCircles++;
   }
   for(Circle c: currentBubbles)
   {
+    //makes sure no circles are touching the outer edge
    c.wallDetection();
   }
 }
@@ -52,12 +54,14 @@ void draw()
      
   }
   
-  //loop aroo
+  //loops as long as the timer is still running and the game is at the proper stage
   if(state == 1 && counter <= 2000)
   {
     if(counter % 35 == 0)
     {
+      //a new circle is added based on the amount of frames (with counter % 35, a new circle is added around every half-second)
       currentBubbles.add(new Circle(0));
+      //certifies that the new circle is not touching the edge of the screen, keeps track of total circles
       currentBubbles.get(currentBubbles.size()-1).wallDetection();
       totalCircles++;
     }
@@ -65,29 +69,36 @@ void draw()
     removalIndex = -1;
     for(Circle c: currentBubbles)
     {
+      //displays each circle on the screen
       c.show();
+      //sets the local radius variable equal to the radius of circle c
       radiusT = c.getRadius();
+      
+      //increases the size of the circle as long as it has not yet hit the max size
       if(!c.maxRadius(radiusT) && !c.getNotGrowing())
       {
         c.grow();
       }
+      //prevents the circle from repeatedly growing
        else
          c.setNotGrowing(true);
-         
+       
+      //decreases the size of the circle until it is nonexistant
       if(c.getNotGrowing() && !c.minRadius(radiusT))
       {
         c.shrink();
       }
+      //removes the circle from the arraylist of circles
       if(c.getNotGrowing() && c.minRadius(radiusT))
       {
         removalIndex = circleCounter;
       }
-      
       circleCounter++;
     }
     if(removalIndex > -1)
        currentBubbles.remove(removalIndex);
     
+    //moves the game into its third state when the timer runs out
     if(counter == 2000)
       state = 2;
   }
@@ -98,13 +109,13 @@ void draw()
   if(state == 0)
   {
   
-  //size of text smh
+  //size of text 
   noFill();
-  rectMode(CORNER);  // Set rectMode to CENTER
+  rectMode(CORNER);  // Set rectMode to CORNER
   fill(100);  // Set fill to gray
   //-buttonOffY
   //-buttonOffX
-  rect(tempX-buttonOffX, tempY-buttonOffY+height/3, buttonW, buttonH);  // Draw gray rect using CENTER mode    
+  rect(tempX-buttonOffX, tempY-buttonOffY+height/3, buttonW, buttonH);  // Draw gray rect using CORNER mode    
   
   textSize(64);
   textAlign(CENTER, CENTER);
@@ -113,6 +124,7 @@ void draw()
   //text(s, 10, 10, 70, 80);
   text("Mouse Accuracy Test", 0, 0, width, height);
   
+  //changes fill to dark blue in order to make start text readable
   fill(65, 105, 225);
   text("Start", tempX-buttonOffX, tempY-buttonOffY+ height/3, buttonW, buttonH);
   
@@ -125,8 +137,10 @@ void draw()
   }
 }
 
+//does an action when the mouse is pressed
 void mousePressed() 
 {
+  //checks to see if the user clicks the start button
   if(state == 0)
   {
     if (mouseX < tempX-buttonOffX + buttonW && mouseX > tempX-buttonOffX)
@@ -136,6 +150,7 @@ void mousePressed()
     }
   }
   
+  //allows the user to click circles during state 1
   if(state == 1)
   {
     double closeDist = 1400;
@@ -152,12 +167,12 @@ void mousePressed()
     }
     
     if(closeDist == 1400)
-      totalClicks++;
+      totalClicks++;//counts the user's click despite them missing
     else
       {
         circleClicks++;
         totalClicks++;
-        currentBubbles.remove(index);
+        currentBubbles.remove(index);//removes the circle that the user pressed from the arraylist
       }
   }
 }
