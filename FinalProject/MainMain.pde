@@ -1,7 +1,7 @@
 color col = color(216);
 int state;
 double circleClicks, totalClicks, totalCircles;
-int tempX, tempY, limiter, radiusT, buttonW, buttonH, buttonOffX, buttonOffY, counter;
+int tempX, tempY, limiter, radiusT, buttonW, buttonH, buttonOffX, buttonOffY, counter, circleCounter, removalIndex;
 ArrayList<Circle> currentBubbles = new ArrayList<Circle>();
 
 void settings()
@@ -55,12 +55,14 @@ void draw()
   //loop aroo
   if(state == 1 && counter <= 2000)
   {
-    if(counter % 10 == 0)
+    if(counter % 35 == 0)
     {
       currentBubbles.add(new Circle(0));
       currentBubbles.get(currentBubbles.size()-1).wallDetection();
       totalCircles++;
     }
+    circleCounter = 0;
+    removalIndex = -1;
     for(Circle c: currentBubbles)
     {
       c.show();
@@ -78,9 +80,13 @@ void draw()
       }
       if(c.getNotGrowing() && c.minRadius(radiusT))
       {
-        c.setNotGrowing(false);
+        removalIndex = circleCounter;
       }
+      
+      circleCounter++;
     }
+    if(removalIndex > -1)
+       currentBubbles.remove(removalIndex);
     
     if(counter == 2000)
       state = 2;
